@@ -1,3 +1,8 @@
+use std::{
+    mem::min_align_of,
+    ops::{Add, Range},
+};
+
 fn soma(a: i32, b: i32) -> i32 {
     a + b
 }
@@ -47,6 +52,26 @@ fn fahrenheit_para_celsius(f: f32) -> f32 {
     (f - 32.0) / 1.8
 }
 
+fn multiplos_5_7(numeros: Vec<i32>) -> Vec<i32> {
+    let mut mul: Vec<i32> = Vec::new();
+    for n in numeros {
+        if (n % 5 == 0) && (n % 7 == 0) {
+            mul.push(n);
+        }
+    }
+    return mul;
+}
+
+fn terminam_0(numeros: Vec<i32>) -> Vec<i32> {
+    let mut ter: Vec<i32> = Vec::new();
+    for n in numeros {
+        if n % 10 == 0 {
+            ter.push(n);
+        }
+    }
+    return ter;
+}
+
 fn main() {
     println!("Soma: {}", soma(4, 5));
 
@@ -78,4 +103,12 @@ fn main() {
         celsius_para_fahrenheit(celsius),
         fahrenheit_para_celsius(fahrenheit)
     );
+
+    let mut numeros: Vec<i32> = Vec::new();
+    for n in 1000..9999 {
+        numeros.push(n)
+    }
+    let multiplos = multiplos_5_7(numeros);
+    let fim_0 = terminam_0(multiplos);
+    println!("John precisa enviar {} cartas", fim_0.len());
 }
